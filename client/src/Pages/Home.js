@@ -33,7 +33,7 @@ const Home = () => {
     const handleLike = async (id) => {
         try {
             const res = await axios.post(
-                `http://localhost:9000/api/v1/like/${id}`,
+                `https://https-github-com-prabhatmunjal12-my-blog.onrender.com/api/v1/like/${id}`,
                 {},
                 {
                     headers: {
