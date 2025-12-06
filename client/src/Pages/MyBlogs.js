@@ -9,7 +9,7 @@ const MyBlogs = () => {
     useEffect(() => {
         const fetchMyBlogs = async () => {
             try {
-                const res = await axios.get("https://blog-project-5xqq.onrender.com/api/v1/get/all/myblogs", {
+                const res = await axios.get("https://blog-project-5xqq.onrender.com", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -31,7 +31,7 @@ const MyBlogs = () => {
 
         try {
             const res = await axios.delete(
-                `https://blog-project-5xqq.onrender.com/api/v1/delete/blog/${blogId}`,
+                `https://blog-project-5xqq.onrender.com/${blogId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
