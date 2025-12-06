@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -10,19 +11,22 @@ const Register = () => {
         password: "",
     });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post(
-                "http://localhost:9000/api/v1/user/register",
-                input
-            );
-            alert(res.data.message);
-            navigate("/login");
-        } catch (error) {
-            alert(error.response?.data?.message || "Something went wrong");
-        }
-    };
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await axios.post(
+            "https://blog-project-5xqq.onrender.com/api/v1/user/register",
+            input,
+            { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        );
+
+        alert(res.data.message); 
+        navigate("/login");
+    } catch (error) {
+        alert(error.response?.data?.message || "Something went wrong");
+    }
+};
+
 
     return (
         <div className="login-page d-flex justify-content-center align-items-center vh-100">

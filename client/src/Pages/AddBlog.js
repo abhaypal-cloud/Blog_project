@@ -15,8 +15,13 @@ const AddBlog = () => {
 
     useEffect(() => {
         const fetchAllCategories = async () => {
+<<<<<<< HEAD
             try {
                 const res = await axios.get("http://localhost:9000/api/v1/get/categories", {
+=======
+            const res = await axios.get("https://blog-project-5xqq.onrender.com/api/v1/get/categories",
+                {
+>>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -41,6 +46,7 @@ const AddBlog = () => {
 
 
         try {
+<<<<<<< HEAD
             const res = await axios.post(
                 "http://localhost:9000/api/v1/add/blog",
                 formdata,
@@ -51,6 +57,13 @@ const AddBlog = () => {
                     },
                 }
             );
+=======
+        const res = await axios.post(
+    "https://blog-project-5xqq.onrender.com/api/v1/user/register",
+    input,
+    { headers: { "Content-Type": "application/json" }, withCredentials: true }
+);
+>>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
             alert(res.data.message);
             navigate("/");
         } catch (error) {

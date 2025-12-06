@@ -9,7 +9,24 @@ const Home = () => {
     const userId = localStorage.getItem("userId"); // stored at login
 
     useEffect(() => {
+<<<<<<< HEAD
         fetchBlogs();
+=======
+        const fetchAllBlogs = async () => {
+            try {
+                const res = await axios.get("https://blog-project-5xqq.onrender.com/api/v1/get/allblogs", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                });
+                console.log("Blogs from API:", res.data);
+                setBlogs(res.data.fetchAllBlogs || []);
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        };
+        fetchAllBlogs();
+>>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
     }, []);
 
     // Fetch all blogs
@@ -56,9 +73,25 @@ const Home = () => {
                         <h2 className="mb-5 my-3 fw-bold text-white bg-primary">Latest Posts</h2>
 
                         <div className="row g-4">
+<<<<<<< HEAD
                             {blogs.length > 0 ? (
                                 blogs.map((item) => {
                                     const isLiked = item.likes?.includes(userId);
+=======
+                            {blogs && blogs.length > 0 ? (
+                                blogs.map((item) => (
+                                    <div
+                                        className="col-lg-4 col-md-6 d-flex align-items-stretch"
+                                        key={item._id || item.title}
+                                    >
+                                        <div className="card h-100 shadow-sm">
+                                            {/* Card Image */}
+                                            <img
+                                                src={`https://blog-project-1-5ih2.onrender.com/${item.thumbnail}`}
+                                                alt={item.title}
+                                                className="card-img-top"
+                                            />
+>>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
 
                                     return (
                                         <div className="col-lg-4 col-md-6 d-flex align-items-stretch" key={item._id}>

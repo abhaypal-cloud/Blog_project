@@ -39,3 +39,7 @@ router.post("/add/category", checkIsUserAuthenticated, CategoryController.addNew
 router.post("/like/:id", checkIsUserAuthenticated, postController.likePost);
 
 export default router;
+
+
+
+
