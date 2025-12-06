@@ -9,7 +9,7 @@ const MyBlogs = () => {
     useEffect(() => {
         const fetchMyBlogs = async () => {
             try {
-                const res = await axios.get("https://blog-project-5xqq.onrender.com", {
+                const res = await axios.get("https://my-blog-project-c7xq.onrender.com/api/v1/get/all/myblogs", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -31,7 +31,7 @@ const MyBlogs = () => {
 
         try {
             const res = await axios.delete(
-                `https://blog-project-5xqq.onrender.com/${blogId}`,
+                `https://blog-project-5xqq.onrender.com/api/v1/delete/blog/${blogId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -66,7 +66,7 @@ const MyBlogs = () => {
                                         {/* Card Image */}
                                         {item.thumbnail && (
                                             <img
-                                                src={`https://blog-project-5xqq.onrender.com/${item.thumbnail}`}
+                                                src={`https://my-blog-project-c7xq.onrender.com/${item.thumbnail}`}
                                                 alt={item.title}
                                                 className="card-img-top"
                                             />
