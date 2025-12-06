@@ -10,6 +10,7 @@ import SingleBlog from './Pages/SingleBlog';
 import PrivateRoute from './Services/ProtectedRoutes';
 import MyBlogs from './Pages/MyBlogs';
 import ForgetPassword from './Pages/ForgetPassword';
+import ResetPassword from './Pages/ResetPassword';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/forget-password' element={<ForgetPassword />} />
+        <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
 
         {/* Protected Routes */}
         <Route path='/' element={<PrivateRoute />}>

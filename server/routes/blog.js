@@ -3,6 +3,7 @@ import AuthController from "../controllers/authController.js";
 import BlogController from "../controllers/blogController.js";
 import CategoryController from "../controllers/categoryController.js";
 import multer from "multer";
+import postController from "../controllers/postController.js";
 import checkIsUserAuthenticated from "../middlewares/authMiddleware.js";
 
 const storage = multer.diskStorage({
@@ -21,6 +22,9 @@ const router = express.Router();
 router.post("/user/register", AuthController.userRegistration);
 router.post("/user/login", AuthController.userLogin);
 router.post("/forget/password", AuthController.forgetPassword);
+router.post("/reset-password/:id/:token", AuthController.resetPassword);
+
+
 
 // Protected Routes
 
@@ -32,5 +36,6 @@ router.get("/get/all/myblogs", checkIsUserAuthenticated, BlogController.getAllMy
 
 router.get("/get/categories", checkIsUserAuthenticated, CategoryController.getAllCategories);
 router.post("/add/category", checkIsUserAuthenticated, CategoryController.addNewCategory);
+router.post("/like/:id", checkIsUserAuthenticated, postController.likePost);
 
 export default router;

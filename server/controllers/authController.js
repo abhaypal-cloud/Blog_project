@@ -63,32 +63,24 @@ class AuthController {
     }
     static forgetPassword = async (req, res) => {
         const { email } = req.body;
-
         try {
-            // 1. Check if user exists
             const isUser = await authModel.findOne({ email: email });
             if (!isUser) {
                 return res.status(400).json({ message: "User does not exist" });
             }
-
-            // 2. Generate reset token
             const token = jwt.sign({ userID: isUser._id }, "pleaseSubscribe", {
-                expiresIn: "15m", // short expiry for security
+                expiresIn: "15m",
             });
-
-            // 3. Create Nodemailer transporter (⚠️ use App Password instead of real Gmail password)
             let transporter = nodemailer.createTransport({
                 service: "gmail",
                 auth: {
-                    user: "prabhatmunjal74@gmail.com", // replace with your Gmail
-                    pass: "yitnfipzcxlegerq",   // generate App Password in Gmail settings
+                    user: "prabhatmunjal74@gmail.com",
+                    pass: "yitnfipzcxlegerq",
                 },
             });
-
-            // 4. Mail options
             let mailOptions = {
                 from: "prabhatmunjal74@gmail.com",
-                to: email, // send to user's email
+                to: email,
                 subject: "Reset your password",
                 html: `
         <p>Hello ${isUser.username || "User"},</p>
@@ -99,8 +91,6 @@ class AuthController {
         </a>
       `,
             };
-
-            // 5. Send email
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     console.error("Error sending email:", error);
@@ -109,12 +99,43 @@ class AuthController {
                     console.log("Email sent: " + info.response);
                     return res.status(200).json({
                         message: "Password reset link sent to your email",
-                        token, // optional: can remove if you don’t want to expose it
+                        token,
                     });
                 }
             });
         } catch (error) {
             return res.status(500).json({ message: error.message });
+        }
+    };
+    static resetPassword = async (req, res) => {
+        const { id, token } = req.params;
+        const { password } = req.body;
+        try {
+            const decoded = jwt.verify(decodeURIComponent(token), "pleaseSubscribe");
+            if (decoded.userID.toString() !== id.toString()) {
+                return res.status(400).json({ message: "Invalid token or ID" });
+            }
+            if (!password) {
+                return res.status(400).json({ message: "Password is required" });
+            }
+            const genSalt = await bcryptjs.genSalt(10);
+            const hashedPassword = await bcryptjs.hash(password, genSalt);
+
+
+            const updatedUser = await authModel.findByIdAndUpdate(
+                id,
+                { password: hashedPassword },
+                { new: true }
+            );
+
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            return res.status(200).json({ message: "Password updated successfully" });
+
+        } catch (error) {
+            console.error("Reset password error:", error.message);
+            return res.status(400).json({ message: "Invalid or expired token" });
         }
     };
 
