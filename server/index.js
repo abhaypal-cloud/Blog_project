@@ -18,7 +18,7 @@ connectToMongo();
 // --- ROBUST CORS CONFIGURATION ---
 const allowedOrigins = [
 //   "https://blog-project-1-5ih2.onrender.com", // Production Frontend
-  "http://localhost:3000"                      // <--- ADD THIS LINE (Local Frontend)
+  "https://blog-application-wzq5.onrender.com"                      // <--- ADD THIS LINE (Local Frontend)
 ];
 
 app.use(cors({
