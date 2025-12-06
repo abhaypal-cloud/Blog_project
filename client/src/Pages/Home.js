@@ -12,7 +12,7 @@ const Home = () => {
         const fetchAllBlogs = async () => {
             try {
                 const res = await axios.get(
-                    "http://localhost:9000/api/v1/get/allblogs",
+                    "https://https-github-com-prabhatmunjal12-my-blog.onrender.com/api/v1/get/allblogs",
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`,
