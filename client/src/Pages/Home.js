@@ -12,7 +12,7 @@ const Home = () => {
         const fetchAllBlogs = async () => {
             try {
                 const res = await axios.get(
-                    "https://blog-project-5xqq.onrender.com/api/v1/get/allblogs",
+                    "https://my-blog-project-c7xq.onrender.com/api/v1/get/allblogs",
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +33,7 @@ const Home = () => {
     const handleLike = async (id) => {
         try {
             const res = await axios.post(
-                `https://blog-project-5xqq.onrender.com/api/v1/like/${id}`,
+                `https://my-blog-project-c7xq.onrender.com/api/v1/like/${id}`,
                 {},
                 {
                     headers: {
@@ -73,7 +73,7 @@ const Home = () => {
                                         >
                                             <div className="card h-100 shadow-sm">
                                                 <img
-                                                    src={`https://blog-project-5xqq.onrender.com/${item.thumbnail}`}
+                                                    src={`https://my-blog-project-c7xq.onrender.com/${item.thumbnail}`}
                                                     alt={item.title}
                                                     className="card-img-top"
                                                 />
