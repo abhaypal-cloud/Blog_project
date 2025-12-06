@@ -15,17 +15,15 @@ const AddBlog = () => {
 
     useEffect(() => {
         const fetchAllCategories = async () => {
-<<<<<<< HEAD
             try {
-                const res = await axios.get("http://localhost:9000/api/v1/get/categories", {
-=======
-            const res = await axios.get("https://blog-project-5xqq.onrender.com/api/v1/get/categories",
-                {
->>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                });
+                const res = await axios.get(
+                    "https://blog-project-5xqq.onrender.com/api/v1/get/categories",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        },
+                    }
+                );
                 setCategories(res.data);
             } catch (err) {
                 console.error("Error fetching categories:", err);
@@ -37,33 +35,24 @@ const AddBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-
         const formdata = new FormData();
         formdata.append("title", input.title);
         formdata.append("category", input.category);
         formdata.append("description", input.description);
         if (file) formdata.append("thumbnail", file);
 
-
         try {
-<<<<<<< HEAD
             const res = await axios.post(
-                "http://localhost:9000/api/v1/add/blog",
+                "https://blog-project-5xqq.onrender.com/api/v1/add/blog",
                 formdata,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 }
             );
-=======
-        const res = await axios.post(
-    "https://blog-project-5xqq.onrender.com/api/v1/user/register",
-    input,
-    { headers: { "Content-Type": "application/json" }, withCredentials: true }
-);
->>>>>>> 7986114637cd9baf7e6198b8e065319dd21b140d
+
             alert(res.data.message);
             navigate("/");
         } catch (error) {
