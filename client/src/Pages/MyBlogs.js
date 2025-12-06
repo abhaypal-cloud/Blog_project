@@ -31,7 +31,7 @@ const MyBlogs = () => {
 
         try {
             const res = await axios.delete(
-                `https://blog-project-5xqq.onrender.com/api/v1/delete/blog/${blogId}`,
+                `https://my-blog-project-c7xq.onrender.com/api/v1/delete/blog/${blogId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
