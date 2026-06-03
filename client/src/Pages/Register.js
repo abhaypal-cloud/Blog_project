@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
     try {
         const res = await axios.post(
-            "https://my-blog-project-c7xq.onrender.com/api/v1/user/register",
+            "http://localhost:9000/api/v1/user/register",
             input,
             { headers: { "Content-Type": "application/json" }, withCredentials: true }
         );

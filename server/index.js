@@ -4,7 +4,7 @@ import connectToMongo from "./config/db.js";
 import authRoutes from "./routes/blog.js";
 import multer from "multer";
 
-import 'dotenv/config'
+// import 'dotenv/config'
 
 
 
@@ -21,29 +21,29 @@ const allowedOrigins = [
   "https://blog-application-wzq5.onrender.com"                      // <--- ADD THIS LINE (Local Frontend)
 ];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     // Allow requests with no origin (like mobile apps or curl requests)
+//     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // This requires the specific origin, not '*'
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // This requires the specific origin, not '*'
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"]
+// }));
 // --- START OF FIX ---
 // We replaced app.use(cors()) with this configuration:
-// app.use(cors({
-//     origin: "http://localhost:3000", // Your exact frontend URL
-//     credentials: true, // Allows cookies/headers to be sent
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization"]
-// }));
+app.use(cors({
+    origin: "http://localhost:9000", // Your exact frontend URL
+    credentials: true, // Allows cookies/headers to be sent
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 // --- END OF FIX ---
 
 

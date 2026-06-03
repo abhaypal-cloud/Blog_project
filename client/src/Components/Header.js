@@ -34,7 +34,7 @@ const Header = () => {
             <div className="container-fluid">
                 {/* Brand Logo */}
                 <Link className="navbar-brand text-white fw-bold" to="/">
-                    CodeWithPrabhat
+                    CodeWithABHAY
                 </Link>
 
                 {/* Mobile Toggle Button */}

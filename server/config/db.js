@@ -1,21 +1,18 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const connectToMongo = async () => {
-    try {
-        const uri = process.env.MONGO_URI_CLOUD;
+  try {
+    const uri = "mongodb://127.0.0.1:27017/blogdb";
 
-        console.log("Trying Mongo URI:", uri || "Not defined");
+    console.log("Trying Mongo URI:", uri);
 
-        await mongoose.connect(uri);
-        console.log("MongoDB connected successfully");
-    } catch (err) {
-        console.error("MongoDB connection failed:", err.message);
-        process.exit(1);
-    }
+    await mongoose.connect(uri);
+
+    console.log("MongoDB connected successfully");
+  } catch (err) {
+    console.error("MongoDB connection failed:", err.message);
+    process.exit(1);
+  }
 };
 
 export default connectToMongo;
- 

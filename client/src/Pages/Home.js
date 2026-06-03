@@ -12,7 +12,7 @@ const Home = () => {
         const fetchAllBlogs = async () => {
             try {
                 const res = await axios.get(
-                    "https://my-blog-project-c7xq.onrender.com/api/v1/get/allblogs",
+                    "http://localhost:9000/api/v1/get/allblogs",
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +33,7 @@ const Home = () => {
     const handleLike = async (id) => {
         try {
             const res = await axios.post(
-                `https://my-blog-project-c7xq.onrender.com/api/v1/like/${id}`,
+                `http://localhost:9000/api/v1/like/${id}`,
                 {},
                 {
                     headers: {
@@ -73,7 +73,7 @@ const Home = () => {
                                         >
                                             <div className="card h-100 shadow-sm">
                                                 <img
-                                                    src={`https://my-blog-project-c7xq.onrender.com/${item.thumbnail}`}
+                                                    src={`http://localhost:9000/${item.thumbnail}`}
                                                     alt={item.title}
                                                     className="card-img-top"
                                                 />
@@ -110,7 +110,7 @@ const Home = () => {
                                     );
                                 })
                             ) : (
-                                <h2>Loading...</h2>
+                                <h2>No posts available</h2>
                             )}
                         </div>
                     </section>
@@ -122,7 +122,7 @@ const Home = () => {
                     className="text-center p-3 text-white fw-bold"
                     style={{ background: "rgba(0, 0, 0, 0.2)" }}
                 >
-                    © {new Date().getFullYear()} CodeWithPrabhat
+                    © {new Date().getFullYear()} CodeWithABHAY
                 </div>
             </footer>
         </>

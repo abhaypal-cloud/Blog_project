@@ -86,7 +86,7 @@ class AuthController {
         <p>Hello ${isUser.username || "User"},</p>
         <p>You requested to reset your password.</p>
         <p>Click the link below to reset it (valid for 15 minutes):</p>
-        <a href="http://localhost:3000/reset-password/${isUser._id}/${token}">
+        <a href="http://localhost:9000/reset-password/${isUser._id}/${token}">
           Reset Password
         </a>
       `,
